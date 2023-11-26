@@ -58,7 +58,7 @@
       <PrecompiledHeaderFile>pchBloxy.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BLOXY_PLATFORM_WINDOWS;DEBUG;BLOXY_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\ImGui;dependencies\ImGui\ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\imgui;dependencies\ImGui\imgui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -75,7 +75,7 @@
       <PrecompiledHeaderFile>pchBloxy.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BLOXY_PLATFORM_WINDOWS;RELEASE;BLOXY_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\ImGui;dependencies\ImGui\ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\imgui;dependencies\ImGui\imgui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>

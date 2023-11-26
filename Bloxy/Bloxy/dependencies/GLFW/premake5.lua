@@ -17,6 +17,12 @@ project "GLFW"
 		"GLFW/src/vulkan.c",
 		"GLFW/src/window.c"
 	}
+
+	includedirs
+	{
+		"GLFW/"
+	}
+
 	filter "system:linux"
 		pic "On"
 
