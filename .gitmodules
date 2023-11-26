@@ -1,0 +1,6 @@
+[submodule "Bloxy/Bloxy/dependencies/GLFW/GLFW"]
+	path = Bloxy/Bloxy/dependencies/GLFW/GLFW
+	url = https://github.com/glfw/glfw.git
+[submodule "Bloxy/Bloxy/dependencies/ImGui/ImGui"]
+	path = Bloxy/Bloxy/dependencies/ImGui/ImGui
+	url = https://github.com/ocornut/imgui.git
