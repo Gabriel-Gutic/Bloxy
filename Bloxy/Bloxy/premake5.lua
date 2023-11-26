@@ -6,7 +6,7 @@ dependencies["ImGui"] = "dependencies/ImGui/imgui"
 group "Dependencies"
 	include "dependencies/GLFW"
 	include "dependencies/Glad"
-	include "dependencies/ImGui"
+	--include "dependencies/ImGui"
 group ""
 
 project "Bloxy"
@@ -41,7 +41,7 @@ project "Bloxy"
 	{
 		"GLFW",
 		"Glad",
-		"ImGui",
+		--"ImGui",
 	}
 
 	filter "system:windows"
