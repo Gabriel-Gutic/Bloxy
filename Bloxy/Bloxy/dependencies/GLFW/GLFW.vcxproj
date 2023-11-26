@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7372E60C-DF86-0EBE-A808-B21D14DC0AEF}</ProjectGuid>
+    <ProjectGuid>{154B857C-0182-860D-AA6E-6C109684020F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Bloxy</RootNamespace>
+    <RootNamespace>GLFW</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -41,28 +41,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\Build\bin\Debug-windows-x86_64\Bloxy\</OutDir>
-    <IntDir>..\Build\bin-int\Debug-windows-x86_64\Bloxy\</IntDir>
-    <TargetName>Bloxy</TargetName>
+    <OutDir>..\..\..\Build\bin\Debug-windows-x86_64\GLFW\</OutDir>
+    <IntDir>..\..\..\Build\bin-int\Debug-windows-x86_64\GLFW\</IntDir>
+    <TargetName>GLFW</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\Build\bin\Release-windows-x86_64\Bloxy\</OutDir>
-    <IntDir>..\Build\bin-int\Release-windows-x86_64\Bloxy\</IntDir>
-    <TargetName>Bloxy</TargetName>
+    <OutDir>..\..\..\Build\bin\Release-windows-x86_64\GLFW\</OutDir>
+    <IntDir>..\..\..\Build\bin-int\Release-windows-x86_64\GLFW\</IntDir>
+    <TargetName>GLFW</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pchBloxy.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BLOXY_PLATFORM_WINDOWS;DEBUG;BLOXY_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\ImGui;dependencies\ImGui\ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_GLFW_WIN32;_CRT_SECURE_NO_WARNINGS;GLFW_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -71,41 +68,43 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pchBloxy.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BLOXY_PLATFORM_WINDOWS;RELEASE;BLOXY_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\ImGui;dependencies\ImGui\ImGui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_GLFW_WIN32;_CRT_SECURE_NO_WARNINGS;GLFW_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Bloxy.h" />
-    <ClInclude Include="src\pchBloxy.h" />
+    <ClInclude Include="GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="GLFW\src\glfw_config.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Bloxy\Core\EntryPoint.cpp" />
-    <ClCompile Include="src\pchBloxy.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="dependencies\GLFW\GLFW.vcxproj">
-      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="dependencies\Glad\Glad.vcxproj">
-      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="dependencies\ImGui\ImGui.vcxproj">
-      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
-    </ProjectReference>
+    <ClCompile Include="GLFW\src\context.c" />
+    <ClCompile Include="GLFW\src\egl_context.c" />
+    <ClCompile Include="GLFW\src\init.c" />
+    <ClCompile Include="GLFW\src\input.c" />
+    <ClCompile Include="GLFW\src\monitor.c" />
+    <ClCompile Include="GLFW\src\osmesa_context.c" />
+    <ClCompile Include="GLFW\src\vulkan.c" />
+    <ClCompile Include="GLFW\src\wgl_context.c" />
+    <ClCompile Include="GLFW\src\win32_init.c" />
+    <ClCompile Include="GLFW\src\win32_joystick.c" />
+    <ClCompile Include="GLFW\src\win32_monitor.c" />
+    <ClCompile Include="GLFW\src\win32_thread.c" />
+    <ClCompile Include="GLFW\src\win32_time.c" />
+    <ClCompile Include="GLFW\src\win32_window.c" />
+    <ClCompile Include="GLFW\src\window.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
