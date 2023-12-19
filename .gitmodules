@@ -1,3 +1,12 @@
 [submodule "Bloxy/Bloxy/dependencies/GLFW/GLFW"]
 	path = Bloxy/Bloxy/dependencies/GLFW/GLFW
 	url = https://github.com/glfw/glfw.git
+[submodule "Bloxy/Bloxy/Dependencies/STBImage/STBImage"]
+	path = Bloxy/Bloxy/Dependencies/STBImage/STBImage
+	url = https://github.com/nothings/stb.git
+[submodule "Bloxy/Bloxy/Dependencies/glm"]
+	path = Bloxy/Bloxy/Dependencies/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "Bloxy/Bloxy/Dependencies/spdlog"]
+	path = Bloxy/Bloxy/Dependencies/spdlog
+	url = https://github.com/gabime/spdlog.git
