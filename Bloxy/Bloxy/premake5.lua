@@ -1,11 +1,13 @@
 dependencies = {}
-dependencies["GLFW"] = "dependencies/GLFW/GLFW/include"
-dependencies["Glad"] = "dependencies/Glad/Glad/include"
-dependencies["ImGui"] = "dependencies/ImGui/imgui"
+dependencies["GLFW"] = "Dependencies/GLFW/GLFW/include"
+dependencies["Glad"] = "Dependencies/Glad/Glad/include"
+dependencies["STBImage"] = "Dependencies/STBImage/STBImage"
+dependencies["ImGui"] = "Dependencies/ImGui/imgui"
 
 group "Dependencies"
-	include "dependencies/GLFW"
-	include "dependencies/Glad"
+	include "Dependencies/GLFW"
+	include "Dependencies/Glad"
+	include "Dependencies/STBImage"
 	--include "dependencies/ImGui"
 group ""
 
@@ -19,28 +21,32 @@ project "Bloxy"
 	objdir (bin_int_dir)
 
 	pchheader("pchBloxy.h")
-	pchsource("src/pchBloxy.cpp")
+	pchsource("Source/pchBloxy.cpp")
 
 	files 
 	{
-		"src/**.cpp",
-		"src/**.h",
+		"Source/**.cpp",
+		"Source/**.h",
 	}
 
 	includedirs
 	{
-		"src",
-		"src/Bloxy",
+		"Source",
+		"Source/Bloxy",
 		dependencies["GLFW"],
 		dependencies["Glad"],
 		dependencies["ImGui"],
+		dependencies["STBImage"],
 		dependencies["ImGui"] .. "/imgui",
+		"Dependencies/glm",
+		"Dependencies/spdlog/include",
 	}
 
 	links 
 	{
 		"GLFW",
 		"Glad",
+		"STBImage",
 		--"ImGui",
 	}
 

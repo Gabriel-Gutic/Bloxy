@@ -1,6 +1,7 @@
-project "Glad"
+project "STBImage"
 	kind "StaticLib"
-	language "C"
+	language "C++"
+	cppdialect "C++11"
 	staticruntime "on"
 
 	targetdir (bin_dir)
@@ -8,13 +9,13 @@ project "Glad"
 
 	files
 	{
-		"Glad/src/**.c",
-		"Glad/include/**.h",
+		"STBImage/stb_image.h",
+		"stb_image.cpp",
 	}
 
 	includedirs
 	{
-		"Glad/include",
+		"STBImage",
 	}
 
 	filter "system:windows"
@@ -22,15 +23,15 @@ project "Glad"
 
         defines
         {
-            "GLAD_PLATFORM_WINDOWS",
+            "STBIMAGE_PLATFORM_WINDOWS",
         }
 
 	filter "configurations:Debug"
-		defines "GLAD_DEBUG"
+		defines "STBIMAGE_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "GLAD_RELEASE"
+		defines "STBIMAGE_RELEASE"
 		runtime "Release"
 		symbols "on"

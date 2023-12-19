@@ -8,20 +8,21 @@ project "SandBox"
 	objdir (bin_int_dir)
 
 	pchheader("pch.h")
-	pchsource("src/pch.cpp")
+	pchsource("Source/pch.cpp")
 
 	files 
 	{
-		"src/**.cpp",
-		"src/**.h",
+		"Source/**.cpp",
+		"Source/**.h",
 	}
 
 	includedirs
 	{
-		"src",
-		sln .. "Bloxy/src",
-		sln .. "Bloxy/src/Bloxy",
-		sln .. "Bloxy/dependencies/ImGui/ImGui",
+		"Source",
+		sln .. "Bloxy/Source",
+		sln .. "Bloxy/Source/Bloxy",
+		sln .. "Bloxy/Dependencies/ImGui/ImGui",
+		sln .. "Bloxy/Dependencies/spdlog/include",
 	}
 
 	links

@@ -7,15 +7,45 @@
     <Filter Include="Bloxy\Core">
       <UniqueIdentifier>{AB167808-97CE-B955-00D6-92B1ECAC5446}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bloxy\Core\Printing">
+      <UniqueIdentifier>{25B5CF26-9116-AD34-1A84-F3E686E4E3F3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Bloxy.h" />
-    <ClInclude Include="src\pchBloxy.h" />
+    <ClInclude Include="Source\Bloxy.h" />
+    <ClInclude Include="Source\Bloxy\Core\Application.h">
+      <Filter>Bloxy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Printing\Logger.h">
+      <Filter>Bloxy\Core\Printing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Printing\Print.h">
+      <Filter>Bloxy\Core\Printing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\pchBloxy.h" />
+    <ClInclude Include="Source\Bloxy\Core\Window.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.h" />
+    <ClInclude Include="Source\Bloxy\Core\Time\Timer.h" />
+    <ClInclude Include="Source\Bloxy\Core\Time\Time.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\KeyCodes.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\MouseCodes.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Bloxy\Core\EntryPoint.cpp">
+    <ClCompile Include="Source\Bloxy\Core\Application.cpp">
       <Filter>Bloxy\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\pchBloxy.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\EntryPoint.cpp">
+      <Filter>Bloxy\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\Core\Printing\Logger.cpp">
+      <Filter>Bloxy\Core\Printing</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\pchBloxy.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Window.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Time\Timer.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Time\Time.cpp" />
   </ItemGroup>
 </Project>

@@ -58,7 +58,7 @@
       <PrecompiledHeaderFile>pchBloxy.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BLOXY_PLATFORM_WINDOWS;DEBUG;BLOXY_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\imgui;dependencies\ImGui\imgui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;Source\Bloxy;Dependencies\GLFW\GLFW\include;Dependencies\Glad\Glad\include;Dependencies\ImGui\imgui;Dependencies\STBImage\STBImage;Dependencies\ImGui\imgui\imgui;Dependencies\glm;Dependencies\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -75,7 +75,7 @@
       <PrecompiledHeaderFile>pchBloxy.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BLOXY_PLATFORM_WINDOWS;RELEASE;BLOXY_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;src\Bloxy;dependencies\GLFW\GLFW\include;dependencies\Glad\Glad\include;dependencies\ImGui\imgui;dependencies\ImGui\imgui\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;Source\Bloxy;Dependencies\GLFW\GLFW\include;Dependencies\Glad\Glad\include;Dependencies\ImGui\imgui;Dependencies\STBImage\STBImage;Dependencies\ImGui\imgui\imgui;Dependencies\glm;Dependencies\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -87,21 +87,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Bloxy.h" />
-    <ClInclude Include="src\pchBloxy.h" />
+    <ClInclude Include="Source\Bloxy.h" />
+    <ClInclude Include="Source\Bloxy\Core\Application.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\KeyCodes.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\MouseCodes.h" />
+    <ClInclude Include="Source\Bloxy\Core\Printing\Logger.h" />
+    <ClInclude Include="Source\Bloxy\Core\Printing\Print.h" />
+    <ClInclude Include="Source\Bloxy\Core\Time\Time.h" />
+    <ClInclude Include="Source\Bloxy\Core\Time\Timer.h" />
+    <ClInclude Include="Source\Bloxy\Core\Window.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.h" />
+    <ClInclude Include="Source\pchBloxy.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Bloxy\Core\EntryPoint.cpp" />
-    <ClCompile Include="src\pchBloxy.cpp">
+    <ClCompile Include="Source\Bloxy\Core\Application.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\EntryPoint.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Printing\Logger.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Time\Time.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Time\Timer.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Window.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.cpp" />
+    <ClCompile Include="Source\pchBloxy.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="dependencies\GLFW\GLFW.vcxproj">
+    <ProjectReference Include="Dependencies\GLFW\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
     </ProjectReference>
-    <ProjectReference Include="dependencies\Glad\Glad.vcxproj">
+    <ProjectReference Include="Dependencies\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="Dependencies\STBImage\STBImage.vcxproj">
+      <Project>{312482F6-1DF1-DC01-460A-CBA932361290}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
