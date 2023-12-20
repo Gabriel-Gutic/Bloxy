@@ -1,6 +1,9 @@
 #include "pchBloxy.h"
 #include "OpenGLWindow.h"
 
+#include "Core/Application.h"
+#include "Core/Input/Events.h"
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -30,6 +33,22 @@ namespace Bloxy
         glEnable(GL_DEPTH_TEST);
 
         SetVSync(false);
+
+        glfwSetKeyCallback(buffer, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+            {
+                switch (action)
+                {
+                case GLFW_PRESS:
+                    Application::Get()->AddEvent(new KeyPressEvent(key));
+                    break;
+                case GLFW_RELEASE:
+                    Application::Get()->AddEvent(new KeyReleaseEvent(key));
+                    break;
+                case GLFW_REPEAT:
+                    Application::Get()->AddEvent(new KeyRepeatEvent(key));
+                    break;
+                }
+            });
 
         glfwSetFramebufferSizeCallback(buffer, [](GLFWwindow* window, int width, int height)
         {

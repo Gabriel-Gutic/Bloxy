@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "Time/Time.h"
+#include "Input/Input.h"
 
 
 namespace Bloxy
@@ -17,10 +18,12 @@ namespace Bloxy
 		s_Instance->m_Window = std::move(Window::Create());
 
 		Time::Init();
+		Input::Init();
 	}
 
 	Application::~Application()
 	{
+		Input::Destroy();
 		Time::Destroy();
 	}
 
@@ -32,16 +35,25 @@ namespace Bloxy
 		{
 			Time::CountFPS();
 
-			m_Window->SetTitle(std::to_string(Time::GetFPS()));
+			while (!m_EventQueue.empty())
+			{
+				Input::Get()->AttachEvent(*m_EventQueue.front());
+				delete m_EventQueue.front();
+				m_EventQueue.pop();
+			}
 
-			// if (glfwGetKey(std::any_cast<GLFWwindow*>(m_Window->Get()), GLFW_KEY_ENTER))
-			// {
-			// 	m_Window->SetSize(500, 500);
-			// }
+			m_Window->SetTitle(std::to_string(Time::GetFPS()));
 
 			m_Window->SwapBuffers();
 			m_Window->PollEvents();
+
+			Input::Get()->Reset();
 		}
+	}
+
+	Application* Application::Get()
+	{
+		return s_Instance;
 	}
 
 	std::unique_ptr<Window>& Application::GetWindow()
@@ -58,5 +70,19 @@ namespace Bloxy
 	void Application::Exit(int status)
 	{
 		exit(status);
+	}
+
+	void Application::AddEvent(Event* event)
+	{
+		m_EventQueue.push(event);
+	}
+
+	void Application::ClearEvents()
+	{
+		// for (Event* event : m_EventQueue)
+		// {
+		// 	delete event;
+		// }
+		// m_EventQueue.clear();
 	}
 }

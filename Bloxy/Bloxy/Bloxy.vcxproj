@@ -89,8 +89,14 @@
   <ItemGroup>
     <ClInclude Include="Source\Bloxy.h" />
     <ClInclude Include="Source\Bloxy\Core\Application.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\Event.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\Events.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\Input.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\KeyboardEvent.h" />
     <ClInclude Include="Source\Bloxy\Core\Input\KeyCodes.h" />
     <ClInclude Include="Source\Bloxy\Core\Input\MouseCodes.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\MouseEvent.h" />
+    <ClInclude Include="Source\Bloxy\Core\Input\WindowEvent.h" />
     <ClInclude Include="Source\Bloxy\Core\Printing\Logger.h" />
     <ClInclude Include="Source\Bloxy\Core\Printing\Print.h" />
     <ClInclude Include="Source\Bloxy\Core\Time\Time.h" />
@@ -103,6 +109,10 @@
   <ItemGroup>
     <ClCompile Include="Source\Bloxy\Core\Application.cpp" />
     <ClCompile Include="Source\Bloxy\Core\EntryPoint.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Input\Event.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Input\Input.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Input\KeyboardEvent.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Input\MouseEvent.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Printing\Logger.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Time\Time.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Time\Timer.cpp" />
