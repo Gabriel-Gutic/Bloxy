@@ -7,7 +7,6 @@ class SandBoxLayer : public Bloxy::Layer
 public:
 	SandBoxLayer()
 	{
-
 	}
 
 	virtual void OnUpdate() override

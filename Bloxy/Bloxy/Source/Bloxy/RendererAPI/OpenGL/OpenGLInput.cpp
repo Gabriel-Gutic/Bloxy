@@ -62,7 +62,7 @@ namespace Bloxy
 		return status == GLFW_PRESS;
 	}
 
-	glm::vec2 OpenGLInput::MousePositionRetriever()
+	Vector2 OpenGLInput::MousePositionRetriever()
 	{
 		GLFWwindow* window;
 		try

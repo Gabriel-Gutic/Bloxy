@@ -80,6 +80,7 @@
       <Filter>Bloxy\RendererAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Source\pchBloxy.h" />
+    <ClInclude Include="Source\Bloxy\Core\Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bloxy\Core\Application.cpp">

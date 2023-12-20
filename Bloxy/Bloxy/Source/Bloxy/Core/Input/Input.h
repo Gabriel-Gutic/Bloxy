@@ -36,7 +36,7 @@ namespace Bloxy
 		static bool GetMouseButtonDown(int button);
 		static bool GetMouseButtonUp(int button);
 		static float GetScroll();
-		static glm::vec2 GetMousePosition();
+		static Vector2 GetMousePosition();
 		static float GetMouseX();
 		static float GetMouseY();
 	public:

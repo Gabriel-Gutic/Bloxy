@@ -88,7 +88,7 @@ namespace Bloxy
 		return s_Instance->m_Scroll;
 	}
 
-	glm::vec2 Input::GetMousePosition()
+	Vector2 Input::GetMousePosition()
 	{
 		return s_Instance->MousePositionRetriever();
 	}
