@@ -14,7 +14,8 @@ namespace Bloxy
 {
 	class Input
 	{
-		Input(){}
+	protected:
+		Input();
 	public:
 		Input(const Input& other) = delete;
 		~Input() = default;
@@ -30,9 +31,10 @@ namespace Bloxy
 	public:
 		void AttachEvent(const Event& event);
 		void Reset();
-	private:
+	protected:
 		void ValidateKey(int keycode) const;
-	private:
+		virtual bool GetKeyStatus(int keycode);
+	protected:
 		std::array<uint8_t, BLOXY_KEY_LAST + 1> m_Keys;
 		std::array<uint8_t, BLOXY_MOUSE_BUTTON_LAST + 1> m_MouseButtons;
 	

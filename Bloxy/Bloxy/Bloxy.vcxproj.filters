@@ -36,6 +36,8 @@
     <ClInclude Include="Source\Bloxy\Core\Input\KeyboardEvent.h" />
     <ClInclude Include="Source\Bloxy\Core\Input\MouseEvent.h" />
     <ClInclude Include="Source\Bloxy\Core\Input\WindowEvent.h" />
+    <ClInclude Include="Source\Bloxy\Core\Layer.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bloxy\Core\Application.cpp">
@@ -57,5 +59,6 @@
     <ClCompile Include="Source\Bloxy\Core\Input\Event.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Input\KeyboardEvent.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Input\MouseEvent.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.cpp" />
   </ItemGroup>
 </Project>

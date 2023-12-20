@@ -2,16 +2,31 @@
 #include "Input.h"
 
 #include "Events.h"
+#include "RendererAPI/OpenGL/RendererAPI.h"
+#include "RendererAPI/OpenGL/OpenGLInput.h"
 
 
 namespace Bloxy
 {
 	Input* Input::s_Instance = nullptr;
+	
+	Input::Input()
+	{
+		for (uint8_t& key : m_Keys)
+			key = BLOXY_NONE;
+		for (uint8_t& button : m_MouseButtons)
+			button = BLOXY_NONE;
+	}
 
 	void Input::Init()
 	{
 		BLOXY_ASSERT(!s_Instance, "Input Engine already initialized!");
-		s_Instance = new (std::nothrow) Input();
+		
+		switch (RendererAPI::GetBackend())
+		{
+		case RendererAPI::Backend::OpenGL:
+			s_Instance = new (std::nothrow) OpenGLInput();
+		}
 		BLOXY_ASSERT(s_Instance, "Failed to initialize Input Engine!");
 	}
 
@@ -27,17 +42,21 @@ namespace Bloxy
 
 	bool Input::GetKey(int keycode)
 	{
-		return s_Instance->m_Keys[keycode] == BLOXY_PRESS 
+		s_Instance->ValidateKey(keycode);
+		return s_Instance->GetKeyStatus(keycode)
+			|| s_Instance->m_Keys[keycode] == BLOXY_PRESS 
 			|| s_Instance->m_Keys[keycode] == BLOXY_REPEAT;
 	}
 
 	bool Input::GetKeyDown(int keycode)
 	{
+		s_Instance->ValidateKey(keycode);
 		return s_Instance->m_Keys[keycode] == BLOXY_PRESS;
 	}
 
 	bool Input::GetKeyUp(int keycode)
 	{
+		s_Instance->ValidateKey(keycode);
 		return s_Instance->m_Keys[keycode] == BLOXY_RELEASE;
 	}
 
@@ -47,32 +66,90 @@ namespace Bloxy
 			"Invalid KeyCode '{0}'", keycode);
 	}
 
+	bool Input::GetKeyStatus(int keycode)
+	{
+		return false;
+	}
+
 	void Input::AttachEvent(const Event& event)
 	{
-		if (event.GetType() == EventType::KeyPress)
+		switch (event.GetType())
 		{
-			KeyPressEvent ke = Event::Cast<KeyPressEvent>(event);
-			m_Keys[ke.GetKey().Value] = BLOXY_PRESS;
-
-			switch (ke.GetKey().Value)
+			case EventType::KeyPress:
 			{
-			case BLOXY_KEY_LEFT_SHIFT:
-			case BLOXY_KEY_RIGHT_SHIFT:
-				m_Keys[BLOXY_KEY_SHIFT] = BLOXY_PRESS;
-				break;
-			case BLOXY_KEY_LEFT_ALT:
-			case BLOXY_KEY_RIGHT_ALT:
-				m_Keys[BLOXY_KEY_ALT] = BLOXY_PRESS;
-				break;
-			case BLOXY_KEY_LEFT_CONTROL:
-			case BLOXY_KEY_RIGHT_CONTROL:
-				m_Keys[BLOXY_KEY_CONTROL] = BLOXY_PRESS;
-				break;
-			case BLOXY_KEY_LEFT_SUPER:
-			case BLOXY_KEY_RIGHT_SUPER:
-				m_Keys[BLOXY_KEY_SUPER] = BLOXY_PRESS;
-				break;
-			}
+				KeyPressEvent ke = Event::Cast<KeyPressEvent>(event);
+				m_Keys[ke.GetKey().Value] = BLOXY_PRESS;
+
+				switch (ke.GetKey().Value)
+				{
+				case BLOXY_KEY_LEFT_SHIFT:
+				case BLOXY_KEY_RIGHT_SHIFT:
+					m_Keys[BLOXY_KEY_SHIFT] = BLOXY_PRESS;
+					break;
+				case BLOXY_KEY_LEFT_ALT:
+				case BLOXY_KEY_RIGHT_ALT:
+					m_Keys[BLOXY_KEY_ALT] = BLOXY_PRESS;
+					break;
+				case BLOXY_KEY_LEFT_CONTROL:
+				case BLOXY_KEY_RIGHT_CONTROL:
+					m_Keys[BLOXY_KEY_CONTROL] = BLOXY_PRESS;
+					break;
+				case BLOXY_KEY_LEFT_SUPER:
+				case BLOXY_KEY_RIGHT_SUPER:
+					m_Keys[BLOXY_KEY_SUPER] = BLOXY_PRESS;
+					break;
+				}
+			} break;
+			case EventType::KeyRepeat:
+			{
+				KeyRepeatEvent ke = Event::Cast<KeyRepeatEvent>(event);
+				m_Keys[ke.GetKey().Value] = BLOXY_REPEAT;
+
+				switch (ke.GetKey().Value)
+				{
+				case BLOXY_KEY_LEFT_SHIFT:
+				case BLOXY_KEY_RIGHT_SHIFT:
+					m_Keys[BLOXY_KEY_SHIFT] = BLOXY_REPEAT;
+					break;
+				case BLOXY_KEY_LEFT_ALT:
+				case BLOXY_KEY_RIGHT_ALT:
+					m_Keys[BLOXY_KEY_ALT] = BLOXY_REPEAT;
+					break;
+				case BLOXY_KEY_LEFT_CONTROL:
+				case BLOXY_KEY_RIGHT_CONTROL:
+					m_Keys[BLOXY_KEY_CONTROL] = BLOXY_REPEAT;
+					break;
+				case BLOXY_KEY_LEFT_SUPER:
+				case BLOXY_KEY_RIGHT_SUPER:
+					m_Keys[BLOXY_KEY_SUPER] = BLOXY_REPEAT;
+					break;
+				}
+			} break;
+			case EventType::KeyRelease:
+			{
+				KeyReleaseEvent ke = Event::Cast<KeyReleaseEvent>(event);
+				m_Keys[ke.GetKey().Value] = BLOXY_RELEASE;
+
+				switch (ke.GetKey().Value)
+				{
+				case BLOXY_KEY_LEFT_SHIFT:
+				case BLOXY_KEY_RIGHT_SHIFT:
+					m_Keys[BLOXY_KEY_SHIFT] = BLOXY_RELEASE;
+					break;
+				case BLOXY_KEY_LEFT_ALT:
+				case BLOXY_KEY_RIGHT_ALT:
+					m_Keys[BLOXY_KEY_ALT] = BLOXY_RELEASE;
+					break;
+				case BLOXY_KEY_LEFT_CONTROL:
+				case BLOXY_KEY_RIGHT_CONTROL:
+					m_Keys[BLOXY_KEY_CONTROL] = BLOXY_RELEASE;
+					break;
+				case BLOXY_KEY_LEFT_SUPER:
+				case BLOXY_KEY_RIGHT_SUPER:
+					m_Keys[BLOXY_KEY_SUPER] = BLOXY_RELEASE;
+					break;
+				}
+			} break;
 		}
 	}
 

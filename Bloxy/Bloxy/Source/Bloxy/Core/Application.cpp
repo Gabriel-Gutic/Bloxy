@@ -23,6 +23,10 @@ namespace Bloxy
 
 	Application::~Application()
 	{
+		ProcessEvents();
+		Input::Get()->Reset();
+
+		RemoveAllLayers();
 		Input::Destroy();
 		Time::Destroy();
 	}
@@ -35,14 +39,12 @@ namespace Bloxy
 		{
 			Time::CountFPS();
 
-			while (!m_EventQueue.empty())
-			{
-				Input::Get()->AttachEvent(*m_EventQueue.front());
-				delete m_EventQueue.front();
-				m_EventQueue.pop();
-			}
+			ProcessEvents();
 
-			m_Window->SetTitle(std::to_string(Time::GetFPS()));
+			for (auto&[name, layer] : m_Layers)
+			{
+				layer->OnUpdate();
+			}
 
 			m_Window->SwapBuffers();
 			m_Window->PollEvents();
@@ -61,6 +63,37 @@ namespace Bloxy
 		return s_Instance->m_Window;
 	}
 
+	void Application::AddLayer(const std::string& name, Layer* layer)
+	{
+		BLOXY_ASSERT(s_Instance->m_Layers.find(name) == s_Instance->m_Layers.end(),
+			"There is already a layer with the name '{0}'", name);
+		s_Instance->m_Layers[name] = layer;
+	}
+
+	Layer* Application::GetLayer(const std::string& name)
+	{
+		BLOXY_ASSERT(s_Instance->m_Layers.find(name) != s_Instance->m_Layers.end(),
+			"The is no layer with the name '{0}'", name);
+		return s_Instance->m_Layers[name];
+	}
+
+	void Application::RemoveLayer(const std::string& name)
+	{
+		BLOXY_ASSERT(s_Instance->m_Layers.find(name) != s_Instance->m_Layers.end(),
+			"The is no layer with the name '{0}'", name);
+		delete s_Instance->m_Layers[name];
+		s_Instance->m_Layers.erase(name);
+	}
+
+	void Application::RemoveAllLayers()
+	{
+		for (auto&[name, layer] : s_Instance->m_Layers)
+		{
+			delete layer;
+		}
+		s_Instance->m_Layers.clear();
+	}
+
 	void Application::Exit()
 	{
 		s_Instance->m_IsRunning = false;
@@ -77,12 +110,13 @@ namespace Bloxy
 		m_EventQueue.push(event);
 	}
 
-	void Application::ClearEvents()
+	void Application::ProcessEvents()
 	{
-		// for (Event* event : m_EventQueue)
-		// {
-		// 	delete event;
-		// }
-		// m_EventQueue.clear();
+		while (!m_EventQueue.empty())
+		{
+			Input::Get()->AttachEvent(*m_EventQueue.front());
+			delete m_EventQueue.front();
+			m_EventQueue.pop();
+		}
 	}
 }

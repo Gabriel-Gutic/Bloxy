@@ -97,11 +97,13 @@
     <ClInclude Include="Source\Bloxy\Core\Input\MouseCodes.h" />
     <ClInclude Include="Source\Bloxy\Core\Input\MouseEvent.h" />
     <ClInclude Include="Source\Bloxy\Core\Input\WindowEvent.h" />
+    <ClInclude Include="Source\Bloxy\Core\Layer.h" />
     <ClInclude Include="Source\Bloxy\Core\Printing\Logger.h" />
     <ClInclude Include="Source\Bloxy\Core\Printing\Print.h" />
     <ClInclude Include="Source\Bloxy\Core\Time\Time.h" />
     <ClInclude Include="Source\Bloxy\Core\Time\Timer.h" />
     <ClInclude Include="Source\Bloxy\Core\Window.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.h" />
     <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.h" />
     <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.h" />
     <ClInclude Include="Source\pchBloxy.h" />
@@ -117,6 +119,7 @@
     <ClCompile Include="Source\Bloxy\Core\Time\Time.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Time\Timer.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Window.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.cpp" />
     <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.cpp" />
     <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.cpp" />
     <ClCompile Include="Source\pchBloxy.cpp">
