@@ -3,6 +3,7 @@
 
 #include "Time/Time.h"
 #include "Input/Input.h"
+#include "Input/Events.h"
 
 
 namespace Bloxy
@@ -107,7 +108,17 @@ namespace Bloxy
 
 	void Application::AddEvent(Event* event)
 	{
-		m_EventQueue.push(event);
+		if (event->GetType() == EventType::WindowClose
+			|| event->GetType() == EventType::WindowMinimize
+			|| event->GetType() == EventType::WindowMaximize
+			|| event->GetType() == EventType::WindowResize)
+		{
+			m_WindowEventQueue.push(event);
+		}
+		else
+		{
+			m_EventQueue.push(event);
+		}
 	}
 
 	void Application::ProcessEvents()
@@ -117,6 +128,47 @@ namespace Bloxy
 			Input::Get()->AttachEvent(*m_EventQueue.front());
 			delete m_EventQueue.front();
 			m_EventQueue.pop();
+		}
+
+		while (!m_WindowEventQueue.empty())
+		{
+			Event& event = *m_WindowEventQueue.front();
+			switch (event.GetType())
+			{
+			case EventType::WindowClose:
+				for (auto& [name, layer] : m_Layers)
+					layer->OnWindowClose();
+				break;
+			case EventType::WindowMinimize:
+				{
+					WindowMinimizeEvent we = Event::Cast<WindowMinimizeEvent>(event);
+					if (we.IsMinimized())
+					{
+						for (auto& [name, layer] : m_Layers)
+							layer->OnWindowMinimize();
+					}
+				}
+				break;
+			case EventType::WindowMaximize:
+				{
+					WindowMaximizeEvent we = Event::Cast<WindowMaximizeEvent>(event);
+					if (we.IsMaximized())
+					{
+						for (auto& [name, layer] : m_Layers)
+							layer->OnWindowMaximize();
+					}
+				}
+				break;
+			case EventType::WindowResize:
+				{
+					WindowResizeEvent we = Event::Cast<WindowResizeEvent>(event);
+					for (auto& [name, layer] : m_Layers)
+						layer->OnWindowResize(we.GetWidth(), we.GetHeight());
+				}
+				break;
+			}
+			delete m_WindowEventQueue.front();
+			m_WindowEventQueue.pop();
 		}
 	}
 }

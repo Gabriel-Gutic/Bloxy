@@ -48,18 +48,4 @@ namespace Bloxy
 	private:
 		float m_Value;
 	};
-
-	class MouseMoveEvent : public Event
-	{
-	public:
-		MouseMoveEvent(float x, float y) :m_X(x), m_Y(y){}
-
-		EVENT_SETUP(MouseMove);
-		float GetX() const { return m_X; }
-		float GetY() const { return m_Y; }
-
-		virtual std::string ToString() const override;
-	private:
-		float m_X, m_Y;
-	};
 }

@@ -23,6 +23,7 @@ namespace Bloxy
 
         /* Make the window's context current */
         glfwMakeContextCurrent(buffer);
+        glfwSetWindowUserPointer(buffer, &m_Data);
 
         // Init Glad
         BLOXY_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Failed to initialize Glad!");
@@ -44,10 +45,62 @@ namespace Bloxy
                 case GLFW_RELEASE:
                     Application::Get()->AddEvent(new KeyReleaseEvent(key));
                     break;
-                case GLFW_REPEAT:
-                    Application::Get()->AddEvent(new KeyRepeatEvent(key));
+                }
+            });
+
+        glfwSetCharCallback(buffer, [](GLFWwindow* window, unsigned int codepoint)
+            {
+                Application::Get()->AddEvent(new CharEvent(codepoint));
+            });
+
+        glfwSetMouseButtonCallback(buffer, [](GLFWwindow* window, int button, int action, int mods)
+            {
+                switch (action)
+                {
+                case GLFW_PRESS:
+                    Application::Get()->AddEvent(new MouseButtonPressEvent(button));
+                    break;
+                case GLFW_RELEASE:
+                    Application::Get()->AddEvent(new MouseButtonReleaseEvent(button));
                     break;
                 }
+            });
+
+        glfwSetScrollCallback(buffer, [](GLFWwindow* window, double xoffset, double yoffset)
+            {
+                Application::Get()->AddEvent(new WheelEvent(yoffset));
+            });
+
+        glfwSetWindowPosCallback(buffer, [](GLFWwindow* window, int xpos, int ypos) {
+            auto& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+
+            data.ScreenX = xpos;
+            data.ScreenY = ypos;
+            });
+
+        glfwSetWindowMaximizeCallback(buffer, [](GLFWwindow* window, int maximized) {
+            Application::Get()->AddEvent(new WindowMaximizeEvent(maximized));
+            });
+
+        glfwSetWindowSizeCallback(buffer, [](GLFWwindow* window, int width, int height) {
+
+            auto& data = *(WindowData*)(glfwGetWindowUserPointer(window));
+
+            data.Width = width;
+            data.Height = height;
+
+            glViewport(0, 0, data.Width, data.Height);
+
+            if (data.Width == 0 || data.Height == 0)
+                Application::Get()->AddEvent(new WindowMinimizeEvent(true));
+            else 
+                Application::Get()->AddEvent(new WindowMinimizeEvent(false));
+
+            Application::Get()->AddEvent(new WindowResizeEvent(width, height));
+            });
+
+        glfwSetWindowCloseCallback(buffer, [](GLFWwindow* window) {
+            Application::Get()->AddEvent(new WindowCloseEvent());
             });
 
         glfwSetFramebufferSizeCallback(buffer, [](GLFWwindow* window, int width, int height)

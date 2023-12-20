@@ -7,5 +7,9 @@ namespace Bloxy
 	{
 	public:
 		virtual void OnUpdate(){}
+		virtual void OnWindowClose(){}
+		virtual void OnWindowMinimize(){}
+		virtual void OnWindowMaximize(){}
+		virtual void OnWindowResize(int width, int height){}
 	};
 }

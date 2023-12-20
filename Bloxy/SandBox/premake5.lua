@@ -23,6 +23,7 @@ project "SandBox"
 		sln .. "Bloxy/Source/Bloxy",
 		sln .. "Bloxy/Dependencies/ImGui/ImGui",
 		sln .. "Bloxy/Dependencies/spdlog/include",
+		sln .. "Bloxy/Dependencies/glm",
 	}
 
 	links

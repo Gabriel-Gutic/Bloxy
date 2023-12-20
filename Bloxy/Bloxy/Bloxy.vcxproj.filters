@@ -7,13 +7,52 @@
     <Filter Include="Bloxy\Core">
       <UniqueIdentifier>{AB167808-97CE-B955-00D6-92B1ECAC5446}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bloxy\Core\Input">
+      <UniqueIdentifier>{EADAE0E1-D6D3-FF33-FF05-E5B8EB5DDF3F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Bloxy\Core\Printing">
       <UniqueIdentifier>{25B5CF26-9116-AD34-1A84-F3E686E4E3F3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bloxy\Core\Time">
+      <UniqueIdentifier>{29565AF7-95E1-C7BB-9EF2-4AB00AFD23BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bloxy\RendererAPI">
+      <UniqueIdentifier>{F33F97A3-5F56-9539-A8CD-205B142366C1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bloxy\RendererAPI\OpenGL">
+      <UniqueIdentifier>{C719F42B-B33E-43AC-DC89-283CC80D42CA}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Bloxy.h" />
     <ClInclude Include="Source\Bloxy\Core\Application.h">
+      <Filter>Bloxy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\Event.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\Events.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\Input.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\KeyCodes.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\KeyboardEvent.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\MouseCodes.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\MouseEvent.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Input\WindowEvent.h">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Layer.h">
       <Filter>Bloxy\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Bloxy\Core\Printing\Logger.h">
@@ -22,22 +61,25 @@
     <ClInclude Include="Source\Bloxy\Core\Printing\Print.h">
       <Filter>Bloxy\Core\Printing</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Time\Time.h">
+      <Filter>Bloxy\Core\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Time\Timer.h">
+      <Filter>Bloxy\Core\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\Core\Window.h">
+      <Filter>Bloxy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.h">
+      <Filter>Bloxy\RendererAPI\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.h">
+      <Filter>Bloxy\RendererAPI\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.h">
+      <Filter>Bloxy\RendererAPI\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="Source\pchBloxy.h" />
-    <ClInclude Include="Source\Bloxy\Core\Window.h" />
-    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.h" />
-    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.h" />
-    <ClInclude Include="Source\Bloxy\Core\Time\Timer.h" />
-    <ClInclude Include="Source\Bloxy\Core\Time\Time.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\KeyCodes.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\MouseCodes.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\Input.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\Event.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\Events.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\KeyboardEvent.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\MouseEvent.h" />
-    <ClInclude Include="Source\Bloxy\Core\Input\WindowEvent.h" />
-    <ClInclude Include="Source\Bloxy\Core\Layer.h" />
-    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bloxy\Core\Application.cpp">
@@ -46,19 +88,37 @@
     <ClCompile Include="Source\Bloxy\Core\EntryPoint.cpp">
       <Filter>Bloxy\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Bloxy\Core\Input\Input.cpp">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\Core\Input\KeyboardEvent.cpp">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\Core\Input\MouseEvent.cpp">
+      <Filter>Bloxy\Core\Input</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Bloxy\Core\Printing\Logger.cpp">
       <Filter>Bloxy\Core\Printing</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Bloxy\Core\Time\Time.cpp">
+      <Filter>Bloxy\Core\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\Core\Time\Timer.cpp">
+      <Filter>Bloxy\Core\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\Core\Window.cpp">
+      <Filter>Bloxy\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.cpp">
+      <Filter>Bloxy\RendererAPI\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.cpp">
+      <Filter>Bloxy\RendererAPI\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.cpp">
+      <Filter>Bloxy\RendererAPI\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="Source\pchBloxy.cpp" />
-    <ClCompile Include="Source\Bloxy\Core\Window.cpp" />
-    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.cpp" />
-    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.cpp" />
-    <ClCompile Include="Source\Bloxy\Core\Time\Timer.cpp" />
-    <ClCompile Include="Source\Bloxy\Core\Time\Time.cpp" />
-    <ClCompile Include="Source\Bloxy\Core\Input\Input.cpp" />
-    <ClCompile Include="Source\Bloxy\Core\Input\Event.cpp" />
-    <ClCompile Include="Source\Bloxy\Core\Input\KeyboardEvent.cpp" />
-    <ClCompile Include="Source\Bloxy\Core\Input\MouseEvent.cpp" />
-    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLInput.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Input\WindowEvent.cpp" />
   </ItemGroup>
 </Project>

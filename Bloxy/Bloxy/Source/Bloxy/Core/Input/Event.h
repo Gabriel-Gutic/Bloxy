@@ -5,8 +5,8 @@ namespace Bloxy
 {
 	enum class EventType
 	{
-		KeyPress, KeyRelease, KeyRepeat, Char,
-		MouseButtonPress, MouseButtonRelease, Wheel, MouseMove,
+		KeyPress, KeyRelease, Char,
+		MouseButtonPress, MouseButtonRelease, Wheel,
 		WindowClose, WindowMinimize, WindowMaximize, WindowResize
 	};
 

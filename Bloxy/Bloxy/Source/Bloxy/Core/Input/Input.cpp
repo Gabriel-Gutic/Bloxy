@@ -11,11 +11,13 @@ namespace Bloxy
 	Input* Input::s_Instance = nullptr;
 	
 	Input::Input()
+		:m_CharCount(0), m_Scroll(0.0f)
 	{
 		for (uint8_t& key : m_Keys)
 			key = BLOXY_NONE;
 		for (uint8_t& button : m_MouseButtons)
 			button = BLOXY_NONE;
+		m_Chars[0] = '\0';
 	}
 
 	void Input::Init()
@@ -43,9 +45,7 @@ namespace Bloxy
 	bool Input::GetKey(int keycode)
 	{
 		s_Instance->ValidateKey(keycode);
-		return s_Instance->GetKeyStatus(keycode)
-			|| s_Instance->m_Keys[keycode] == BLOXY_PRESS 
-			|| s_Instance->m_Keys[keycode] == BLOXY_REPEAT;
+		return s_Instance->GetKeyState(keycode);
 	}
 
 	bool Input::GetKeyDown(int keycode)
@@ -60,13 +60,67 @@ namespace Bloxy
 		return s_Instance->m_Keys[keycode] == BLOXY_RELEASE;
 	}
 
+	std::string Input::GetString()
+	{
+		return s_Instance->m_Chars.data();
+	}
+
+	bool Input::GetMouseButton(int button)
+	{
+		s_Instance->ValidateMouseButton(button);
+		return s_Instance->GetMouseButtonState(button);
+	}
+
+	bool Input::GetMouseButtonDown(int button)
+	{
+		s_Instance->ValidateMouseButton(button);
+		return s_Instance->m_MouseButtons[button] == BLOXY_PRESS;
+	}
+
+	bool Input::GetMouseButtonUp(int button)
+	{
+		s_Instance->ValidateMouseButton(button);
+		return s_Instance->m_MouseButtons[button] == BLOXY_RELEASE;
+	}
+
+	float Input::GetScroll()
+	{
+		return s_Instance->m_Scroll;
+	}
+
+	glm::vec2 Input::GetMousePosition()
+	{
+		return s_Instance->MousePositionRetriever();
+	}
+
+	float Input::GetMouseX()
+	{
+		return s_Instance->GetMousePosition().x;
+	}
+
+	float Input::GetMouseY()
+	{
+		return s_Instance->GetMousePosition().y;
+	}
+
 	void Input::ValidateKey(int keycode) const
 	{
 		BLOXY_ASSERT(BLOXY_KEY_FIRST <= keycode && keycode <= BLOXY_KEY_LAST,
 			"Invalid KeyCode '{0}'", keycode);
 	}
 
-	bool Input::GetKeyStatus(int keycode)
+	void Input::ValidateMouseButton(int button) const
+	{
+		BLOXY_ASSERT(BLOXY_MOUSE_BUTTON_FIRST <= button && button <= BLOXY_MOUSE_BUTTON_LAST,
+			"Invalid Mouse Button '{0}'", button);
+	}
+
+	bool Input::GetKeyState(int keycode)
+	{
+		return false;
+	}
+
+	bool Input::GetMouseButtonState(int button)
 	{
 		return false;
 	}
@@ -100,31 +154,6 @@ namespace Bloxy
 					break;
 				}
 			} break;
-			case EventType::KeyRepeat:
-			{
-				KeyRepeatEvent ke = Event::Cast<KeyRepeatEvent>(event);
-				m_Keys[ke.GetKey().Value] = BLOXY_REPEAT;
-
-				switch (ke.GetKey().Value)
-				{
-				case BLOXY_KEY_LEFT_SHIFT:
-				case BLOXY_KEY_RIGHT_SHIFT:
-					m_Keys[BLOXY_KEY_SHIFT] = BLOXY_REPEAT;
-					break;
-				case BLOXY_KEY_LEFT_ALT:
-				case BLOXY_KEY_RIGHT_ALT:
-					m_Keys[BLOXY_KEY_ALT] = BLOXY_REPEAT;
-					break;
-				case BLOXY_KEY_LEFT_CONTROL:
-				case BLOXY_KEY_RIGHT_CONTROL:
-					m_Keys[BLOXY_KEY_CONTROL] = BLOXY_REPEAT;
-					break;
-				case BLOXY_KEY_LEFT_SUPER:
-				case BLOXY_KEY_RIGHT_SUPER:
-					m_Keys[BLOXY_KEY_SUPER] = BLOXY_REPEAT;
-					break;
-				}
-			} break;
 			case EventType::KeyRelease:
 			{
 				KeyReleaseEvent ke = Event::Cast<KeyReleaseEvent>(event);
@@ -150,6 +179,34 @@ namespace Bloxy
 					break;
 				}
 			} break;
+			case EventType::Char:
+			{
+				CharEvent ce = Event::Cast<CharEvent>(event);
+				if (m_CharCount >= MAX_INPUT_STRING)
+				{
+					BLOXY_WARNING("Input String size was exceeded!");
+				}
+				else
+				{
+					m_Chars[m_CharCount++] = ce.GetChar();
+					m_Chars[m_CharCount] = '\0';
+				}
+			} break;
+			case EventType::MouseButtonPress:
+			{
+				MouseButtonPressEvent me = Event::Cast<MouseButtonPressEvent>(event);
+				m_MouseButtons[me.GetButton()] = BLOXY_PRESS;
+			} break;
+			case EventType::MouseButtonRelease:
+			{
+				MouseButtonReleaseEvent me = Event::Cast<MouseButtonReleaseEvent>(event);
+				m_MouseButtons[me.GetButton()] = BLOXY_RELEASE;
+			} break;
+			case EventType::Wheel:
+			{
+				WheelEvent we = Event::Cast<WheelEvent>(event);
+				m_Scroll = we.GetValue();
+			} break;
 		}
 	}
 
@@ -164,5 +221,10 @@ namespace Bloxy
 		{
 			m_MouseButtons[i] = BLOXY_NONE;
 		}
+
+		m_Chars[0] = '\0';
+		m_CharCount = 0;
+
+		m_Scroll = 0.0f;
 	}
 }

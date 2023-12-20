@@ -8,7 +8,7 @@
 
 namespace Bloxy
 {
-	bool OpenGLInput::GetKeyStatus(int keycode)
+	bool OpenGLInput::GetKeyState(int keycode)
 	{
 		GLFWwindow* window;
 		try
@@ -45,5 +45,37 @@ namespace Bloxy
 		}
 		
 		return status == GLFW_PRESS;
+	}
+	bool OpenGLInput::GetMouseButtonState(int button)
+	{
+		GLFWwindow* window;
+		try
+		{
+			window = std::any_cast<GLFWwindow*>(Application::GetWindow()->Get());
+		}
+		catch (std::bad_any_cast exec)
+		{
+			ASSERT(0, "Invalid Window Cast!");
+		}
+
+		int status = glfwGetMouseButton(window, button);
+		return status == GLFW_PRESS;
+	}
+
+	glm::vec2 OpenGLInput::MousePositionRetriever()
+	{
+		GLFWwindow* window;
+		try
+		{
+			window = std::any_cast<GLFWwindow*>(Application::GetWindow()->Get());
+		}
+		catch (std::bad_any_cast exec)
+		{
+			ASSERT(0, "Invalid Window Cast!");
+		}
+		double x, y;
+		glfwGetCursorPos(window, &x, &y);
+
+		return glm::vec2((float)x, (float)y);
 	}
 }

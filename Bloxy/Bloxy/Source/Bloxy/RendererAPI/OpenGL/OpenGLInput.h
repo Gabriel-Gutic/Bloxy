@@ -8,6 +8,8 @@ namespace Bloxy
 	{
 	public:
 		OpenGLInput(){}
-		virtual bool GetKeyStatus(int keycode) override;
+		virtual bool GetKeyState(int keycode) override;
+		virtual bool GetMouseButtonState(int button) override;
+		virtual glm::vec2 MousePositionRetriever() override;
 	};
 }

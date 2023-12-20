@@ -13,8 +13,11 @@ public:
 	virtual void OnUpdate() override
 	{
 		Bloxy::Application::GetWindow()->SetTitle(std::to_string(Bloxy::Time::GetFPS()));
-	
+	}
 
+	virtual void OnWindowClose() override
+	{
+		Bloxy::Application::Exit();
 	}
 };
 

@@ -45,13 +45,6 @@ namespace Bloxy
 		EVENT_SETUP(KeyRelease);
 	};
 
-	class KeyRepeatEvent : public KeyboardEvent
-	{
-	public:
-		KeyRepeatEvent(int key) :KeyboardEvent(key) {}
-		EVENT_SETUP(KeyRepeat);
-	};
-
 	class CharEvent : public Event
 	{
 	public:

@@ -77,6 +77,9 @@ namespace Bloxy
 				<< "(" << m_Width << ", " << m_Height << ")";
 			return ss.str();
 		}
+
+		int GetWidth() const;
+		int GetHeight() const;
 	private:
 		int m_Width, m_Height;
 	};

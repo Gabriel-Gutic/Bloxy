@@ -38,6 +38,7 @@ namespace Bloxy
 		std::unique_ptr<Window> m_Window;
 
 		std::queue<Event*> m_EventQueue;
+		std::queue<Event*> m_WindowEventQueue;
 		std::unordered_map<std::string, Layer*> m_Layers;
 	};
 }

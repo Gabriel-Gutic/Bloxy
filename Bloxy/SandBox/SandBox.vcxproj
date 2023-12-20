@@ -60,7 +60,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SANDBOX_PLATFORM_WINDOWS;DEBUG;SANDBOX_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Source;..\Bloxy\Source;..\Bloxy\Source\Bloxy;..\Bloxy\Dependencies\ImGui\ImGui;..\Bloxy\Dependencies\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;..\Bloxy\Source;..\Bloxy\Source\Bloxy;..\Bloxy\Dependencies\ImGui\ImGui;..\Bloxy\Dependencies\spdlog\include;..\Bloxy\Dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SANDBOX_PLATFORM_WINDOWS;RELEASE;SANDBOX_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Source;..\Bloxy\Source;..\Bloxy\Source\Bloxy;..\Bloxy\Dependencies\ImGui\ImGui;..\Bloxy\Dependencies\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;..\Bloxy\Source;..\Bloxy\Source\Bloxy;..\Bloxy\Dependencies\ImGui\ImGui;..\Bloxy\Dependencies\spdlog\include;..\Bloxy\Dependencies\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>

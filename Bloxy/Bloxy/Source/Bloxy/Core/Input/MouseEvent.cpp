@@ -29,12 +29,4 @@ namespace Bloxy
 		ss << this->GetName() << ": " << m_Value;
 		return ss.str();
 	}
-
-	std::string MouseMoveEvent::ToString() const
-	{
-		std::stringstream ss;
-		ss << this->GetName() << ": ("
-			<< m_X << ", " << m_Y << ")";
-		return ss.str();
-	}
 }
