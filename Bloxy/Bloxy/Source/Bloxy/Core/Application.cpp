@@ -5,6 +5,8 @@
 #include "Input/Input.h"
 #include "Input/Events.h"
 
+#include "Renderer/Renderer.h"
+
 
 namespace Bloxy
 {
@@ -20,6 +22,7 @@ namespace Bloxy
 
 		Time::Init();
 		Input::Init();
+		Renderer::Get()->Init();
 	}
 
 	Application::~Application()
@@ -28,6 +31,7 @@ namespace Bloxy
 		Input::Get()->Reset();
 
 		RemoveAllLayers();
+		Renderer::Get()->Destroy();
 		Input::Destroy();
 		Time::Destroy();
 	}
@@ -42,10 +46,14 @@ namespace Bloxy
 
 			ProcessEvents();
 
+			Renderer::Get()->Begin();
+
 			for (auto&[name, layer] : m_Layers)
 			{
 				layer->OnUpdate();
 			}
+
+			Renderer::Get()->End();
 
 			m_Window->SwapBuffers();
 			m_Window->PollEvents();

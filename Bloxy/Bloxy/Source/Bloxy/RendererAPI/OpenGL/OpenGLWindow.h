@@ -9,6 +9,7 @@ namespace Bloxy
 	public:
 		OpenGLWindow(std::string_view title = "OpenGLWindow", int width = 1280, int height = 720,
 			int screenX = 100, int screenY = 100);
+		~OpenGLWindow();
 
 		virtual void SetTitle(std::string_view title) override;
 

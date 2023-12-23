@@ -7,11 +7,14 @@ class SandBoxLayer : public Bloxy::Layer
 public:
 	SandBoxLayer()
 	{
+
 	}
 
 	virtual void OnUpdate() override
 	{
 		Bloxy::Application::GetWindow()->SetTitle(std::to_string(Bloxy::Time::GetFPS()));
+	
+		Bloxy::Renderer::DrawQuad();
 	}
 
 	virtual void OnWindowClose() override

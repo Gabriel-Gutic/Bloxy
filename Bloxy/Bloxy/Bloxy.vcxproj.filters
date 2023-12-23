@@ -76,11 +76,27 @@
     <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.h">
       <Filter>Bloxy\RendererAPI\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.h">
+    <ClInclude Include="Source\Bloxy\RendererAPI\RendererAPI.h">
       <Filter>Bloxy\RendererAPI\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Source\pchBloxy.h" />
-    <ClInclude Include="Source\Bloxy\Core\Vector.h" />
+    <ClInclude Include="Source\Bloxy\Core\Math\Vector.h" />
+    <ClInclude Include="Source\Bloxy\Core\Math\Mathf.h" />
+    <ClInclude Include="Source\Bloxy\Renderer\Renderer.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLRenderer.h" />
+    <ClInclude Include="Source\Bloxy\Renderer\VertexBuffer.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLVertexBuffer.h" />
+    <ClInclude Include="Source\Bloxy\Renderer\IndexBuffer.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLIndexBuffer.h" />
+    <ClInclude Include="Source\Bloxy\Renderer\VertexArray.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLBufferLayout.h" />
+    <ClInclude Include="Source\Bloxy\Renderer\Vertex.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="Source\Bloxy\Renderer\Shader.h" />
+    <ClInclude Include="Source\Bloxy\File\File.h" />
+    <ClInclude Include="Source\Bloxy\Renderer\ShaderProgram.h" />
+    <ClInclude Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLShaderProgram.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bloxy\Core\Application.cpp">
@@ -116,10 +132,22 @@
     <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLWindow.cpp">
       <Filter>Bloxy\RendererAPI\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\RendererAPI.cpp">
+    <ClCompile Include="Source\Bloxy\RendererAPI\RendererAPI.cpp">
       <Filter>Bloxy\RendererAPI\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Source\pchBloxy.cpp" />
     <ClCompile Include="Source\Bloxy\Core\Input\WindowEvent.cpp" />
+    <ClCompile Include="Source\Bloxy\Core\Math\Mathf.cpp" />
+    <ClCompile Include="Source\Bloxy\Renderer\Renderer.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLRenderer.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLVertexBuffer.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLIndexBuffer.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLBufferLayout.cpp" />
+    <ClCompile Include="Source\Bloxy\Renderer\VertexArray.cpp" />
+    <ClCompile Include="Source\Bloxy\File\File.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="Source\Bloxy\Renderer\ShaderProgram.cpp" />
+    <ClCompile Include="Source\Bloxy\RendererAPI\OpenGL\OpenGLShaderProgram.cpp" />
   </ItemGroup>
 </Project>

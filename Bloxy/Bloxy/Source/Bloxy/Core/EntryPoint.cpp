@@ -1,6 +1,6 @@
 #include "pchBloxy.h"
 
-#include "RendererAPI/OpenGL/RendererAPI.h"
+#include "RendererAPI/RendererAPI.h"
 #include "Application.h"
 #include "Printing/Logger.h"
 
